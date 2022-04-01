@@ -1,2 +1,26 @@
 # ScrapyCrawl
+
 This is a repository that records the codes and issues met when running a project for scrapy crawl. 
+
+# 踩坑解决方案
+
+1. DEBUG: Crawled (200) ：代表网站成功访问，但是页面获取信息出错，检查JS或者Xpath相关路径是否出错。  
+
+2. DEBUG: Crawled (403) ：代表表示网站采用了防爬技术anti-web-crawling technique，比较简单即会检查用户代理（User Agent）信息。记得robot协议设置为False。
+
+    尝试在请求头部构造User Agent。
+
+    ```python
+    def start_requests(self): 
+
+        yield Request("http://www.php.cn/", 
+
+                      headers={'User-Agent': "your agent string"})
+    ```
+
+    或者在setting中添加：
+
+    ```python
+    USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36"
+    ```
+ 3. 
