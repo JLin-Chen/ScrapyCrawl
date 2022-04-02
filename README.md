@@ -6,18 +6,39 @@ This is a repository that records the codes and issues met when running a projec
 
 ## 1. 框架图
 
-> test
-> > test
-> > > spider
-> > > > _init_.py
-> > > > spider.py
-> > > _init_.py
-> > > items.py
-> > > middlewares.py
-> > > pipelines.py
-> > > settings.py
-> > begin.py
-> > scrapy.cfg
+|test  
+  |-test  
+    |-spiders  
+      |-_init_.py  
+       -spider.py  
+    |-_init_.py  
+     -items.py  
+     -middlewares.py  
+     -pipelines.py  
+     -settings.py
+   |-begin.py
+    -scrapy.cfg
+
+## 2. 新建一个爬虫项目
+
+· 使用PyCharm新建一个项目
+
+· 设置项目Setting，Project Interpreter， Install scrapy
+
+· 打开控制台cmd，cd命令转到项目Scripts所在地址，输入“scrapy startproject test1”  
+  如：
+  
+```cmd
+D:\>cd D:\PyCharm_Python\test\venv\Scripts
+
+D:\PyCharm_Python\test\venv\Scripts>scrapy startproject test
+```
+
+· 根据需要修改items.py/pipelines.py/settings.py
+
+* 详细代码样例[查看](/lianjia)
+
+ 
 
 # 踩坑解决方案
 
