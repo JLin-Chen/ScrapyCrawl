@@ -6,18 +6,7 @@ This is a repository that records the codes and issues met when running a projec
 
 ## 1. 框架图
 
-|test  
-  |-test  
-    |-spiders  
-      |-_init_.py  
-       -spider.py  
-    |-_init_.py  
-     -items.py  
-     -middlewares.py  
-     -pipelines.py  
-     -settings.py
-   |-begin.py
-    -scrapy.cfg
+![project_menu](/img/project_menu.bmp)
 
 ## 2. 新建一个爬虫项目
 
