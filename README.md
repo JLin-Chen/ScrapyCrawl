@@ -2,6 +2,23 @@
 
 This is a repository that records the codes and issues met when running a project for scrapy crawl. 
 
+# Scrapy框架的建立
+
+## 1. 框架图
+
+> test
+> > test
+> > > spider
+> > > > _init_.py
+> > > > spider.py
+> > > _init_.py
+> > > items.py
+> > > middlewares.py
+> > > pipelines.py
+> > > settings.py
+> > begin.py
+> > scrapy.cfg
+
 # 踩坑解决方案
 
 1. DEBUG: Crawled (200) ：代表网站成功访问，但是页面获取信息出错，检查JS或者Xpath相关路径是否出错。  
