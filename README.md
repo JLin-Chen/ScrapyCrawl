@@ -53,7 +53,34 @@ D:\PyCharm_Python\test\venv\Scripts>scrapy startproject test
     ```python
     USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36"
     ```
+    
+    如果还是不能解决问题的话，需要获取网站cookie信息，在spider文件中加上含cookie和user agent的header头。
+    
+    ```python
+    cookie=['']
+    header = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36',
+    'Connection': 'keep-alive',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Cookie': cookie}
+    
+     def start_requests(self):
+        for url in self.start_urls:
+            yield scrapy.Request(url=url,headers=header, callback=self.parse)
+     ```
+    
  3. request无法利用Xpath提取到数据：开发者工具中显示的HTML代码和网页真正的源代码存在区别，可能数据并不在网页源代码中，所以爬不到数据。（tbody节点的影响？使用Xpath Helper时也许能爬到？）
     网站的原始代码可能会被chrome浏览器自动修正。
+    
+ 4. scrapy默认是多线程自动执行的，这样可以提高爬虫的运行效率。但是，如果遇到一些爬虫项目涉及多重循环和变量间的统一参数传递的话，多线程访问同一变量会因为线程执行时间不同而导致结果的不同。在这种情况下，需要在settings.py中，手动设置线程为1，可使得所有的爬取按照顺序和逻辑进行。（如uswoo的streeteasy爬虫项目）
+ ```python
+ # 多线程爬取会导致异步乱序问题
+# 决定最大值
+CONCURRENT_REQUESTS_PER_DOMAIN = 1
+# 下面两个二选一，一个是针对域名设置并发，一个是针对IP设置并发
+CONCURRENT_REQUESTS_PER_IP = 1
+CONCURRENT_REQUESTS_PER_DOMAIN = 1
+```
+
  
  
