@@ -2,7 +2,7 @@
 
 This is a repository that records the codes and issues met when running a project for scrapy crawl. 
 
-# Scrapy框架的建立
+# 一、Scrapy框架的建立
 
 ## 1. 框架图
 
@@ -27,6 +27,9 @@ D:\PyCharm_Python\test\venv\Scripts>scrapy startproject test
 
 * 详细代码样例[查看](/lianjia)
 
+ # 涉及从CSV的操作指南
+ 
+ 爬虫得到的数据通常需要经过一定的数据清洗才可使用，[CSV](/csv)记录了常用的csv文件处理及数据清洗操作。
  
 
 # 踩坑解决方案
