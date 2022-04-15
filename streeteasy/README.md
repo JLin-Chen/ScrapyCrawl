@@ -106,6 +106,53 @@ __第二部分：__
          #     yield item
 ```
 
+# data_clean
+
+这一部分有两个重要的模块：一个是对爬取到的数据进行清洗，去除掉无用的标点符号；另一个是对残缺的url进行补充，使得成为一个能够被成功访问的网页链接。
+
+__数据清洗：__
+
+按行读取数据，并进行数据清洗去除不相关的标点符号，这里选用的是replace()函数，当然这是一个笨办法，但是也是最有效最快的解决方案（以我目前的水平）。还有更多的方法可以使用但
+我还未完全掌握，后续会留作补充。
+
+```pyhton
+for i in range(len(df)):
+    building_name=''
+    unit=''
+    beds=''
+    baths=''
+    price=''
+    url_py=''
+    url_py_add=''
+    building_name=df['building_name'][i]
+    unit = df['unit'][i].replace('[','').replace(']','').replace("'",'')
+    beds = df['beds'][i].replace(' ','').replace("'",'').replace("\\n",'').replace(',','').replace('[','').replace(']','')
+    baths = df['baths'][i].replace(' ', '').replace("'", '').replace("\\n", '').replace(',', '').replace('[','').replace(']','')
+    price = df['price'][i].replace(' ', '').replace("'", '').replace("\\n", '').replace(',', '').replace('$','').replace('[','').replace(']','')
+    url_py = df['url_py'][i].replace('[','').replace(']','').replace("'",'')
+    # print(beds,baths,price)
+```
+
+由于我们注意到获取到的子网页链接，即url_py存在残缺，缺少“https://...”。
+
+所以我们的思路是设计一个模块，首先判断url是否是残缺：若url的首字母是'h',则是完整的url；若是'/',则是残缺的url。（因为经过观察，残缺的url都是以/building开头）
+
+```python
+flag=0
+    for ch in url_py:
+        if ch=='h':
+            flag=1
+            break
+        if ch=='/':
+            flag=2
+            break
+    if flag==1:
+        url_py_add=url_py
+    if flag==2:
+        url_py_add='https://streeteasy.com'+url_py
+```
+
+这里设置flag是为了标记url是否残缺。
 
 
 
