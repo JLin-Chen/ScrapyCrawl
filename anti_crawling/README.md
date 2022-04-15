@@ -61,5 +61,6 @@ __2. 网站cookie信息__
      
 __3. 代理IP的设置__
 
+   详见：https://github.com/SpiderClub/haipproxy
 
   
